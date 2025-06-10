@@ -1,0 +1,22 @@
+body {
+  background: #f8f8f8;
+  display: flex;
+  height: 100vh;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle-button {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  font-size: 40px;
+  background: #ccc;
+  border: none;
+  cursor: pointer;
+}
+
+.circle-button.voted {
+  background: #7baaf7;
+}
