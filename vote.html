@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>加点ボタン</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
+  <script src="firebase-config.js"></script>
+</head>
+<body>
+  <div class="center">
+    <button id="voteBtn" class="circle-button">●</button>
+  </div>
+
+  <script>
+    const db = firebase.database();
+    const voteRef = db.ref("votes");
+
+    const voted = localStorage.getItem("voted");
+    const btn = document.getElementById("voteBtn");
+
+    if (voted) {
+      btn.classList.add("voted");
+      btn.disabled = true;
+    }
+
+    btn.onclick = () => {
+      voteRef.transaction(n => (n || 0) + 1);
+      localStorage.setItem("voted", "true");
+      btn.classList.add("voted");
+      btn.disabled = true;
+    };
+  </script>
+</body>
+</html>
